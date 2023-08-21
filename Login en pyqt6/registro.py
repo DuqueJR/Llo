@@ -8,14 +8,18 @@ from PyQt6.QtWidgets import (QDialog,QLabel,  #iba qdialog
 from PyQt6.QtGui import QFont
 
 class registroUsuarioView(QDialog):
-    
-    def __init__(self):
+
+    def __init__(self, close_callback=[]):
         super().__init__()
         self.setModal(True)#con este comando le digo que si ejecuta la aplicacion y el usuraio quiere interactuar con otra app que lo bloquee
         #literalmente la bloquea
         self.generarFormulario()
+        self.close_callback = close_callback
         
-
+    def close(self):
+        for callback in self.close_callback:
+            callback()
+        super().close()
 
     def generarFormulario(self):
             self.setGeometry(100,100,350,250)
@@ -83,7 +87,6 @@ class registroUsuarioView(QDialog):
 
     def cancelar_creacion(self):
          self.close()
-         self.mostrarlogin()
          
          
 

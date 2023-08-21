@@ -90,8 +90,8 @@ class Login(QWidget):
               )
                              
     def registrar_usuario(self): #si no ponemos el self no es posible para el programa abir otra ventana
-         #self.hide()
-         self.new_user_form = registroUsuarioView()
+         self.hide()
+         self.new_user_form = registroUsuarioView(close_callback=[self.mostrarlogin])
          self.new_user_form.show()
     
     def mostrarlogin(self):
